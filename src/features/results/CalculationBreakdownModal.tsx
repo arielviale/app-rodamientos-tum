@@ -80,39 +80,39 @@ export const CalculationBreakdownModal: React.FC<CalculationBreakdownModalProps>
             </h4>
 
             <div className="bg-[#121614] border border-[#2F3E37] rounded-lg p-4 font-mono text-xs space-y-2">
-              <div className="flex justify-between text-[#A8B0A6]">
+              <div className="flex justify-between text-[#CBD5E1]">
                 <span>Cargas reales en el apoyo:</span>
-                <span className="text-[#F3F0E7]">Fr = {formatKn(Fr)} · Fa = {formatKn(Fa)}</span>
+                <span className="text-[#FFFFFF] font-bold">Fr = {formatKn(Fr)} · Fa = {formatKn(Fa)}</span>
               </div>
-              <div className="flex justify-between text-[#A8B0A6]">
+              <div className="flex justify-between text-[#CBD5E1]">
                 <span>Relación axial/radial Fa / Fr:</span>
-                <span className="text-[#F3F0E7]">{Fr > 0 ? (Fa / Fr).toFixed(3) : "Axial pura"}</span>
+                <span className="text-[#FFFFFF] font-bold">{Fr > 0 ? (Fa / Fr).toFixed(3) : "Axial pura"}</span>
               </div>
               <div className="border-t border-[#242F2A] pt-2 flex justify-between font-bold text-sm">
-                <span className="text-[#D7A15E]">Carga dinámica equivalente (P):</span>
-                <span className="text-[#F3F0E7]">{formatKn(P)}</span>
+                <span className="text-[#E5A85A]">Carga dinámica equivalente (P):</span>
+                <span className="text-[#FFFFFF]">{formatKn(P)}</span>
               </div>
             </div>
 
             <div className="bg-[#121614] border border-[#2F3E37] rounded-lg p-4 font-mono text-xs space-y-2">
-              <div className="text-[#A8B0A6]">
-                Fórmula de vida nominal básica: <span className="text-[#F3F0E7]">L10 = (C / P)^p</span> [millones de revoluciones]
+              <div className="text-[#CBD5E1]">
+                Fórmula de vida nominal básica: <span className="text-[#FFFFFF] font-bold">L10 = (C / P)^p</span> [millones de revoluciones]
               </div>
-              <div className="text-[#A8B0A6] pl-2 border-l border-[#2F3E37]">
+              <div className="text-[#CBD5E1] pl-2 border-l border-[#2F3E37]">
                 p = {p === 3 ? "3 (elementos de bola)" : "10/3 ≈ 3,33 (elementos de rodillo)"} · C = {bearing.CkN.toFixed(2)} kN · P = {P.toFixed(2)} kN
               </div>
-              <div className="text-[#A8B0A6]">
-                L10 = ({bearing.CkN.toFixed(2)} / {P.toFixed(2)})^{p === 3 ? "3" : "3,33"} = <span className="text-[#F3F0E7] font-bold">{(Math.pow(bearing.CkN / P, p)).toFixed(2)} millones de rev</span>
+              <div className="text-[#CBD5E1]">
+                L10 = ({bearing.CkN.toFixed(2)} / {P.toFixed(2)})^{p === 3 ? "3" : "3,33"} = <span className="text-[#FFFFFF] font-bold">{(Math.pow(bearing.CkN / P, p)).toFixed(2)} millones de rev</span>
               </div>
               <div className="border-t border-[#242F2A] pt-2 flex justify-between font-bold text-sm">
-                <span className="text-[#A8B0A6]">Vida básica en horas L10h:</span>
-                <span className="text-[#F3F0E7]">{formatHours(L10h)}</span>
+                <span className="text-[#CBD5E1]">Vida básica en horas L10h:</span>
+                <span className="text-[#FFFFFF]">{formatHours(L10h)}</span>
               </div>
               <div className="flex justify-between font-bold text-sm border-t border-[#242F2A] pt-2">
-                <span className="text-[#D7A15E]">Vida nominal modificada Lnmh (ISO 281):</span>
-                <span className="text-[#D7A15E]">{formatHours(Lnmh ?? L10h)}</span>
+                <span className="text-[#E5A85A]">Vida nominal modificada Lnmh (ISO 281):</span>
+                <span className="text-[#E5A85A]">{formatHours(Lnmh ?? L10h)}</span>
               </div>
-              <div className="text-[11px] text-[#A8B0A6]">
+              <div className="text-xs text-[#CBD5E1]">
                 Factor confiabilidad a1 = {a1} ({input.reliability}%) · Factor lubricación/contaminación aSKF = {aSkf} (modo basic-iso v1)
               </div>
             </div>
@@ -120,23 +120,23 @@ export const CalculationBreakdownModal: React.FC<CalculationBreakdownModalProps>
 
           {/* Section: Static Safety Factor Breakdown */}
           <div className="space-y-3">
-            <h4 className="text-xs font-bold text-[#D7A15E] uppercase tracking-wider flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#D7A15E]" />
+            <h4 className="text-xs font-bold text-[#E5A85A] uppercase tracking-wider flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#E5A85A]" />
               2. Capacidad y Seguridad Estática s0 (ISO 76)
             </h4>
 
             <div className="bg-[#121614] border border-[#2F3E37] rounded-lg p-4 font-mono text-xs space-y-2">
-              <div className="flex justify-between text-[#A8B0A6]">
+              <div className="flex justify-between text-[#CBD5E1]">
                 <span>Carga estática equivalente (P0):</span>
-                <span className="text-[#F3F0E7]">{formatKn(P0)}</span>
+                <span className="text-[#FFFFFF] font-bold">{formatKn(P0)}</span>
               </div>
-              <div className="flex justify-between text-[#A8B0A6]">
+              <div className="flex justify-between text-[#CBD5E1]">
                 <span>Capacidad estática del rodamiento (C0):</span>
-                <span className="text-[#F3F0E7]">{formatKn(bearing.C0kN)}</span>
+                <span className="text-[#FFFFFF] font-bold">{formatKn(bearing.C0kN)}</span>
               </div>
               <div className="border-t border-[#242F2A] pt-2 flex justify-between font-bold text-sm">
-                <span className="text-[#D7A15E]">Factor de seguridad estática s0 = C0 / P0:</span>
-                <span className={s0 >= s0Required ? "text-[#7DAB6A]" : "text-[#E15A45]"}>
+                <span className="text-[#E5A85A]">Factor de seguridad estática s0 = C0 / P0:</span>
+                <span className={s0 >= s0Required ? "text-[#4ADE80]" : "text-[#EF4444]"}>
                   {s0.toFixed(2)} (Mínimo recomendado: {s0Required.toFixed(1)})
                 </span>
               </div>

@@ -24,13 +24,13 @@ export const BearingComparator: React.FC<BearingComparatorProps> = ({
   }
 
   return (
-    <div className="bg-[#1C2420] border border-[#2F3E37] rounded-xl p-6 text-[#F3F0E7] space-y-4">
-      <div className="flex justify-between items-center border-b border-[#2F3E37] pb-3">
+    <div className="bg-[#18221D] border-2 border-[#374940] rounded-xl p-6 text-[#FFFFFF] space-y-4 shadow-xl">
+      <div className="flex justify-between items-center border-b border-[#2C3B34] pb-3">
         <div>
-          <h3 className="font-bold text-sm text-[#D7A15E] uppercase tracking-wider">
+          <h3 className="font-bold text-sm text-[#E5A85A] uppercase tracking-wider">
             Comparativa Técnica Lado a Lado ({candidates.length} / 3)
           </h3>
-          <p className="text-xs text-[#A8B0A6]">
+          <p className="text-xs text-[#CBD5E1]">
             Mismas condiciones de carga, velocidad y confiabilidad aplicadas.
           </p>
         </div>
@@ -39,49 +39,49 @@ export const BearingComparator: React.FC<BearingComparatorProps> = ({
       <div className="overflow-x-auto">
         <table className="w-full text-xs font-mono border-collapse">
           <thead>
-            <tr className="border-b border-[#2F3E37] text-left">
-              <th className="py-3 px-3 text-[#A8B0A6] font-normal w-1/4">Parámetro</th>
+            <tr className="border-b-2 border-[#374940] text-left">
+              <th className="py-3 px-3 text-[#CBD5E1] font-bold w-1/4">Parámetro</th>
               {candidates.map((c) => (
                 <th key={c.bearingId} className="py-3 px-3 relative min-w-[200px]">
                   <div className="flex items-start justify-between">
                     <div>
-                      <div className="font-bold text-sm text-[#D7A15E]">{c.bearing.designation}</div>
-                      <div className="text-[11px] text-[#A8B0A6] font-normal">{c.bearing.family}</div>
+                      <div className="font-bold text-base text-[#E5A85A]">{c.bearing.designation}</div>
+                      <div className="text-xs text-[#CBD5E1] font-normal">{c.bearing.family}</div>
                     </div>
                     <button
                       onClick={() => onRemove(c.bearingId)}
-                      className="p-1 hover:bg-[#2A3530] rounded text-[#A8B0A6] hover:text-[#E15A45]"
+                      className="p-1 hover:bg-[#26352E] rounded text-[#CBD5E1] hover:text-[#EF4444]"
                       title="Quitar de comparación"
                     >
                       <X className="w-4 h-4" />
                     </button>
                   </div>
                   <div className="mt-2">
-                    <BearingSection family={c.bearing.family} size={48} />
+                    <BearingSection family={c.bearing.family} size={52} />
                   </div>
                 </th>
               ))}
             </tr>
           </thead>
-          <tbody className="divide-y divide-[#2F3E37]">
+          <tbody className="divide-y divide-[#2C3B34]">
             <tr>
-              <td className="py-2 px-3 text-[#A8B0A6]">Dictamen global</td>
+              <td className="py-2.5 px-3 text-[#CBD5E1] font-semibold">Dictamen global</td>
               {candidates.map((c) => (
-                <td key={c.bearingId} className="py-2 px-3">
+                <td key={c.bearingId} className="py-2.5 px-3">
                   <span
-                    className={`inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-bold ${
+                    className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold ${
                       c.status === "pass"
-                        ? "bg-[#7DAB6A]/20 text-[#7DAB6A]"
-                        : "bg-[#E15A45]/20 text-[#E15A45]"
+                        ? "bg-[#22C55E]/20 text-[#4ADE80] border border-[#22C55E]/40"
+                        : "bg-[#EF4444]/20 text-[#EF4444] border border-[#EF4444]/40"
                     }`}
                   >
                     {c.status === "pass" ? (
                       <>
-                        <CheckCircle className="w-3 h-3" /> CUMPLE
+                        <CheckCircle className="w-3.5 h-3.5" /> CUMPLE
                       </>
                     ) : (
                       <>
-                        <AlertTriangle className="w-3 h-3" /> NO CUMPLE
+                        <AlertTriangle className="w-3.5 h-3.5" /> NO CUMPLE
                       </>
                     )}
                   </span>

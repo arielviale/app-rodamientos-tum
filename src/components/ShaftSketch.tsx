@@ -20,321 +20,441 @@ export const ShaftSketch: React.FC<ShaftSketchProps> = ({
   boreMm = 40,
   selectedBearingName,
 }) => {
-  const width = 640;
-  const height = 180;
-  const shaftY = 85;
-  const shaftH = 24;
+  // Generous SVG viewBox coordinates for crisp, uncluttered rendering
+  const width = 760;
+  const height = 240;
+  const shaftY = 105;
+  const shaftH = 28;
 
-  const supportAX = 140;
-  const supportBX = 500;
-  const loadX = 320;
+  const supportAX = 150;
+  const supportBX = 610;
+  const loadX = 380;
 
   return (
-    <div className="w-full bg-[#1C2420] border border-[#2F3E37] rounded-lg p-4 select-none">
-      <div className="flex justify-between items-center mb-2 text-xs text-[#A8B0A6]">
+    <div className="w-full bg-[#18211D] border-2 border-[#374940] rounded-xl p-4 shadow-xl select-none">
+      {/* Top Diagram Header with high contrast */}
+      <div className="flex flex-wrap justify-between items-center gap-2 mb-3 pb-2 border-b border-[#2C3B34]">
         <div className="flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-[#D7A15E]" />
-          <span className="font-semibold text-[#F3F0E7]">ESQUEMA CINEMÁTICO DEL EJE</span>
-          <span className="text-[11px] bg-[#121614] px-2 py-0.5 rounded border border-[#2F3E37]">
-            ISO Catálogo p. 84 (Soportes rígidos sin momento)
+          <span className="w-2.5 h-2.5 rounded-full bg-[#D7A15E] shadow-[0_0_8px_#D7A15E]" />
+          <span className="font-bold text-sm tracking-wide text-[#FFFFFF]">
+            ESQUEMA CINEMÁTICO DEL EJE Y APOYOS
+          </span>
+          <span className="text-xs bg-[#101614] text-[#CBD5E1] px-2.5 py-0.5 rounded-full border border-[#3E5248] font-mono">
+            Hipótesis ISO: Soportes rígidos sin momento flexor
           </span>
         </div>
-        <div className="font-mono text-[11px] text-[#D7A15E]">
-          d = {boreMm} mm · n = {speedRpm} r.p.m.
+        <div className="flex items-center gap-2 font-mono text-xs">
+          <span className="bg-[#101614] px-2.5 py-1 rounded border border-[#374940] text-[#FFFFFF]">
+            d = <strong className="text-[#D7A15E] text-sm">{boreMm} mm</strong>
+          </span>
+          <span className="bg-[#101614] px-2.5 py-1 rounded border border-[#374940] text-[#FFFFFF]">
+            n = <strong className="text-[#D7A15E] text-sm">{speedRpm} r.p.m.</strong>
+          </span>
         </div>
       </div>
 
-      <div className="relative w-full overflow-x-auto flex justify-center">
+      {/* SVG Canvas */}
+      <div className="relative w-full overflow-x-auto flex justify-center bg-[#101613] rounded-lg border border-[#26352E] py-2">
         <svg
           viewBox={`0 0 ${width} ${height}`}
-          className="w-full max-w-[640px] h-auto text-xs"
-          style={{ minWidth: "480px" }}
+          className="w-full max-w-[760px] h-auto text-xs"
+          style={{ minWidth: "560px" }}
         >
           <defs>
-            {/* Arrow marker for Fr */}
+            {/* Red Arrow marker for Fr */}
             <marker
-              id="arrow-down"
-              markerWidth="8"
-              markerHeight="8"
-              refX="4"
-              refY="7"
+              id="arrow-fr"
+              markerWidth="9"
+              markerHeight="9"
+              refX="4.5"
+              refY="8"
               orient="auto"
             >
-              <polygon points="0 0, 8 0, 4 7" fill="#E15A45" />
+              <polygon points="0,0 9,0 4.5,8" fill="#EF4444" stroke="#B91C1C" strokeWidth="0.5" />
             </marker>
 
-            {/* Arrow marker for Fa */}
+            {/* Copper Arrow marker for Fa */}
             <marker
-              id="arrow-axial"
-              markerWidth="8"
-              markerHeight="8"
-              refX="7"
-              refY="4"
+              id="arrow-fa"
+              markerWidth="9"
+              markerHeight="9"
+              refX="8"
+              refY="4.5"
               orient="auto"
             >
-              <polygon points="0 0, 7 4, 0 8" fill="#D7A15E" />
+              <polygon points="0,0 8,4.5 0,9" fill="#F59E0B" stroke="#B45309" strokeWidth="0.5" />
             </marker>
 
-            {/* Hatching for ground/housing */}
+            {/* Double head arrow for thermal expansion */}
+            <marker id="arrow-slide-left" markerWidth="6" markerHeight="6" refX="1" refY="3" orient="auto">
+              <polygon points="6,0 6,6 0,3" fill="#4ADE80" />
+            </marker>
+            <marker id="arrow-slide-right" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+              <polygon points="0,0 0,6 6,3" fill="#4ADE80" />
+            </marker>
+
+            {/* Gradient for metallic shaft body */}
+            <linearGradient id="shaftGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#41524A" />
+              <stop offset="35%" stopColor="#2A3832" />
+              <stop offset="70%" stopColor="#1E2824" />
+              <stop offset="100%" stopColor="#35453E" />
+            </linearGradient>
+
+            {/* Hatching pattern for grounded housing */}
             <pattern
-              id="hatch"
+              id="housingHatch"
               width="6"
               height="6"
               patternTransform="rotate(45 0 0)"
               patternUnits="userSpaceOnUse"
             >
-              <line x1="0" y1="0" x2="0" y2="6" stroke="#2F3E37" strokeWidth="1.5" />
+              <line x1="0" y1="0" x2="0" y2="6" stroke="#3D5047" strokeWidth="1.2" />
             </pattern>
           </defs>
 
-          {/* Center line of shaft */}
+          {/* Shaft Center Axis (Dot-Dash line) */}
           <line
-            x1="40"
+            x1="30"
             y1={shaftY + shaftH / 2}
-            x2={width - 40}
+            x2={width - 30}
             y2={shaftY + shaftH / 2}
-            stroke="#526058"
-            strokeDasharray="8,4,2,4"
-            strokeWidth="1"
+            stroke="#64748B"
+            strokeDasharray="10,4,2,4"
+            strokeWidth="1.2"
           />
 
-          {/* Shaft Body */}
-          <rect
-            x="60"
-            y={shaftY}
-            width={width - 120}
-            height={shaftH}
-            fill="#2A3530"
-            stroke="#526058"
-            strokeWidth="1.5"
-            rx="2"
-          />
+          {/* Solid Shaft Body with clean beveled ends */}
+          <g>
+            <rect
+              x="50"
+              y={shaftY}
+              width={width - 100}
+              height={shaftH}
+              fill="url(#shaftGrad)"
+              stroke="#5D7368"
+              strokeWidth="1.5"
+              rx="3"
+            />
+            {/* Subtle shaft highlights */}
+            <line
+              x1="52"
+              y1={shaftY + 4}
+              x2={width - 52}
+              y2={shaftY + 4}
+              stroke="#6E8579"
+              strokeWidth="1"
+              strokeOpacity="0.6"
+            />
+          </g>
 
-          {/* Support A (Left) */}
+          {/* ========================================================= */}
+          {/* APOYO A (Left Support)                                    */}
+          {/* ========================================================= */}
           <g transform={`translate(${supportAX}, 0)`}>
-            {/* Upper bearing half */}
-            <rect
-              x="-18"
-              y={shaftY - 26}
-              width="36"
-              height="22"
-              fill="#121614"
-              stroke={roleA === "fixed" ? "#D7A15E" : "#7DAB6A"}
-              strokeWidth="1.5"
-              rx="1"
-            />
-            {/* Rolling element circle */}
-            <circle cx="0" cy={shaftY - 15} r="6" fill="#2F3E37" stroke="#F3F0E7" strokeWidth="1" />
+            {/* Housing Ground Blocks */}
+            <rect x="-24" y={shaftY - 36} width="48" height="8" fill="url(#housingHatch)" stroke="#3D5047" strokeWidth="1" />
+            <rect x="-24" y={shaftY + shaftH + 28} width="48" height="8" fill="url(#housingHatch)" stroke="#3D5047" strokeWidth="1" />
 
-            {/* Lower bearing half */}
+            {/* Upper Bearing Ring Half */}
             <rect
-              x="-18"
+              x="-20"
+              y={shaftY - 28}
+              width="40"
+              height="24"
+              fill="#18221D"
+              stroke={roleA === "fixed" ? "#D7A15E" : "#4ADE80"}
+              strokeWidth="2"
+              rx="2"
+            />
+            <circle cx="0" cy={shaftY - 16} r="7" fill="#2E3D36" stroke="#FFFFFF" strokeWidth="1.5" />
+
+            {/* Lower Bearing Ring Half */}
+            <rect
+              x="-20"
               y={shaftY + shaftH + 4}
-              width="36"
-              height="22"
-              fill="#121614"
-              stroke={roleA === "fixed" ? "#D7A15E" : "#7DAB6A"}
-              strokeWidth="1.5"
-              rx="1"
+              width="40"
+              height="24"
+              fill="#18221D"
+              stroke={roleA === "fixed" ? "#D7A15E" : "#4ADE80"}
+              strokeWidth="2"
+              rx="2"
             />
-            <circle cx="0" cy={shaftY + shaftH + 15} r="6" fill="#2F3E37" stroke="#F3F0E7" strokeWidth="1" />
+            <circle cx="0" cy={shaftY + shaftH + 16} r="7" fill="#2E3D36" stroke="#FFFFFF" strokeWidth="1.5" />
 
-            {/* Axial constraint brackets if fixed */}
+            {/* Fixed vs Floating Hardware Symbols */}
             {roleA === "fixed" ? (
-              <g stroke="#D7A15E" strokeWidth="2" fill="none">
-                {/* Fixed bracket stops */}
-                <path d="M -22 55 L -18 55 L -18 141 L -22 141" />
-                <path d="M 22 55 L 18 55 L 18 141 L 22 141" />
+              /* Rigid axial holding brackets (retaining rings / shoulders) */
+              <g stroke="#D7A15E" strokeWidth="2.5" fill="none">
+                <path d="M -25 68 L -20 68 L -20 170 L -25 170" />
+                <path d="M 25 68 L 20 68 L 20 170 L 25 170" />
               </g>
             ) : (
               /* Floating sliding marks */
-              <g stroke="#7DAB6A" strokeWidth="1.5" strokeDasharray="3,3">
-                <line x1="-24" y1={shaftY - 28} x2="-20" y2={shaftY - 28} />
-                <line x1="20" y1={shaftY - 28} x2="24" y2={shaftY - 28} />
-                {/* Arrow for thermal slide */}
-                <path d="M -8 48 L 8 48 M -4 45 L -8 48 L -4 51 M 4 45 L 8 48 L 4 51" stroke="#7DAB6A" strokeWidth="1.2" fill="none" />
-                <text x="0" y="42" fill="#7DAB6A" fontSize="9" textAnchor="middle" fontFamily="monospace">
+              <g>
+                <line x1="-18" y1="64" x2="18" y2="64" stroke="#4ADE80" strokeWidth="1.5" strokeDasharray="3,2" />
+                <line x1="-12" y1="52" x2="12" y2="52" stroke="#4ADE80" strokeWidth="1.5" markerStart="url(#arrow-slide-left)" markerEnd="url(#arrow-slide-right)" />
+                <text x="0" y="44" fill="#4ADE80" fontSize="10" fontWeight="bold" textAnchor="middle" fontFamily="monospace">
                   ±ΔL
                 </text>
               </g>
             )}
 
-            {/* Support label */}
-            <text
-              x="0"
-              y={shaftY + shaftH + 38}
-              fill="#F3F0E7"
-              fontSize="11"
-              fontWeight="bold"
-              textAnchor="middle"
-            >
-              Apoyo A
-            </text>
-            <text
-              x="0"
-              y={shaftY + shaftH + 49}
-              fill={roleA === "fixed" ? "#D7A15E" : "#7DAB6A"}
-              fontSize="10"
-              textAnchor="middle"
-              className="font-mono"
-            >
-              {roleA === "fixed" ? "LADO FIJO" : "LADO LIBRE"}
-            </text>
-          </g>
-
-          {/* Support B (Right) */}
-          <g transform={`translate(${supportBX}, 0)`}>
-            {/* Upper bearing half */}
-            <rect
-              x="-18"
-              y={shaftY - 26}
-              width="36"
-              height="22"
-              fill="#121614"
-              stroke={roleB === "fixed" ? "#D7A15E" : "#7DAB6A"}
-              strokeWidth="1.5"
-              rx="1"
-            />
-            <circle cx="0" cy={shaftY - 15} r="6" fill="#2F3E37" stroke="#F3F0E7" strokeWidth="1" />
-
-            {/* Lower bearing half */}
-            <rect
-              x="-18"
-              y={shaftY + shaftH + 4}
-              width="36"
-              height="22"
-              fill="#121614"
-              stroke={roleB === "fixed" ? "#D7A15E" : "#7DAB6A"}
-              strokeWidth="1.5"
-              rx="1"
-            />
-            <circle cx="0" cy={shaftY + shaftH + 15} r="6" fill="#2F3E37" stroke="#F3F0E7" strokeWidth="1" />
-
-            {/* Axial constraint brackets if fixed */}
-            {roleB === "fixed" ? (
-              <g stroke="#D7A15E" strokeWidth="2" fill="none">
-                <path d="M -22 55 L -18 55 L -18 141 L -22 141" />
-                <path d="M 22 55 L 18 55 L 18 141 L 22 141" />
-              </g>
-            ) : (
-              /* Floating sliding marks */
-              <g stroke="#7DAB6A" strokeWidth="1.5">
-                <path d="M -8 48 L 8 48 M -4 45 L -8 48 L -4 51 M 4 45 L 8 48 L 4 51" stroke="#7DAB6A" strokeWidth="1.2" fill="none" />
-                <text x="0" y="42" fill="#7DAB6A" fontSize="9" textAnchor="middle" fontFamily="monospace">
-                  ±ΔL
-                </text>
-              </g>
-            )}
-
-            {/* Support label */}
-            <text
-              x="0"
-              y={shaftY + shaftH + 38}
-              fill="#F3F0E7"
-              fontSize="11"
-              fontWeight="bold"
-              textAnchor="middle"
-            >
-              Apoyo B
-            </text>
-            <text
-              x="0"
-              y={shaftY + shaftH + 49}
-              fill={roleB === "fixed" ? "#D7A15E" : "#7DAB6A"}
-              fontSize="10"
-              textAnchor="middle"
-              className="font-mono"
-            >
-              {roleB === "fixed" ? "LADO FIJO" : "LADO LIBRE"}
-            </text>
-          </g>
-
-          {/* Applied Forces Representation */}
-          {/* Radial Load Fr Arrow */}
-          {Fr > 0 && (
-            <g transform={`translate(${loadX}, 0)`}>
-              <line
-                x1="0"
-                y1="18"
-                x2="0"
-                y2={shaftY - 2}
-                stroke="#E15A45"
-                strokeWidth="2.5"
-                markerEnd="url(#arrow-down)"
+            {/* Labels for Apoyo A */}
+            <g transform={`translate(0, ${shaftY + shaftH + 42})`}>
+              {/* Title */}
+              <text x="0" y="0" fill="#FFFFFF" fontSize="13" fontWeight="bold" textAnchor="middle" letterSpacing="0.5">
+                APOYO A
+              </text>
+              {/* Status pill badge */}
+              <rect
+                x="-46"
+                y="6"
+                width="92"
+                height="18"
+                rx="4"
+                fill={roleA === "fixed" ? "#D7A15E22" : "#22C55E22"}
+                stroke={roleA === "fixed" ? "#D7A15E" : "#4ADE80"}
+                strokeWidth="1.2"
               />
-              <rect x="-35" y="4" width="70" height="15" fill="#121614" rx="2" stroke="#E15A45" strokeWidth="1" />
               <text
                 x="0"
-                y="15"
-                fill="#E15A45"
-                fontSize="10"
+                y="19"
+                fill={roleA === "fixed" ? "#F59E0B" : "#4ADE80"}
+                fontSize="11"
                 fontWeight="bold"
                 textAnchor="middle"
-                className="font-mono"
+                fontFamily="monospace"
+              >
+                {roleA === "fixed" ? "LADO FIJO" : "LADO LIBRE"}
+              </text>
+              <text x="0" y="34" fill="#94A3B8" fontSize="9.5" textAnchor="middle">
+                {roleA === "fixed" ? "Fija axialmente" : "Permite dilatación"}
+              </text>
+            </g>
+          </g>
+
+          {/* ========================================================= */}
+          {/* APOYO B (Right Support)                                   */}
+          {/* ========================================================= */}
+          <g transform={`translate(${supportBX}, 0)`}>
+            {/* Housing Ground Blocks */}
+            <rect x="-24" y={shaftY - 36} width="48" height="8" fill="url(#housingHatch)" stroke="#3D5047" strokeWidth="1" />
+            <rect x="-24" y={shaftY + shaftH + 28} width="48" height="8" fill="url(#housingHatch)" stroke="#3D5047" strokeWidth="1" />
+
+            {/* Upper Bearing Ring Half */}
+            <rect
+              x="-20"
+              y={shaftY - 28}
+              width="40"
+              height="24"
+              fill="#18221D"
+              stroke={roleB === "fixed" ? "#D7A15E" : "#4ADE80"}
+              strokeWidth="2"
+              rx="2"
+            />
+            <circle cx="0" cy={shaftY - 16} r="7" fill="#2E3D36" stroke="#FFFFFF" strokeWidth="1.5" />
+
+            {/* Lower Bearing Ring Half */}
+            <rect
+              x="-20"
+              y={shaftY + shaftH + 4}
+              width="40"
+              height="24"
+              fill="#18221D"
+              stroke={roleB === "fixed" ? "#D7A15E" : "#4ADE80"}
+              strokeWidth="2"
+              rx="2"
+            />
+            <circle cx="0" cy={shaftY + shaftH + 16} r="7" fill="#2E3D36" stroke="#FFFFFF" strokeWidth="1.5" />
+
+            {/* Fixed vs Floating Hardware Symbols */}
+            {roleB === "fixed" ? (
+              <g stroke="#D7A15E" strokeWidth="2.5" fill="none">
+                <path d="M -25 68 L -20 68 L -20 170 L -25 170" />
+                <path d="M 25 68 L 20 68 L 20 170 L 25 170" />
+              </g>
+            ) : (
+              /* Floating sliding marks and expansion indicator badge above bearing */
+              <g>
+                <rect x="-42" y="38" width="84" height="20" rx="3" fill="#10251B" stroke="#4ADE80" strokeWidth="1" />
+                <line x1="-32" y1="48" x2="32" y2="48" stroke="#4ADE80" strokeWidth="1.5" markerStart="url(#arrow-slide-left)" markerEnd="url(#arrow-slide-right)" />
+                <text x="0" y="44" fill="#86EFAC" fontSize="9.5" fontWeight="bold" textAnchor="middle" fontFamily="monospace">
+                  ±ΔL DILATACIÓN
+                </text>
+              </g>
+            )}
+
+            {/* Labels for Apoyo B */}
+            <g transform={`translate(0, ${shaftY + shaftH + 42})`}>
+              <text x="0" y="0" fill="#FFFFFF" fontSize="13" fontWeight="bold" textAnchor="middle" letterSpacing="0.5">
+                APOYO B
+              </text>
+              <rect
+                x="-46"
+                y="6"
+                width="92"
+                height="18"
+                rx="4"
+                fill={roleB === "fixed" ? "#D7A15E22" : "#22C55E22"}
+                stroke={roleB === "fixed" ? "#D7A15E" : "#4ADE80"}
+                strokeWidth="1.2"
+              />
+              <text
+                x="0"
+                y="19"
+                fill={roleB === "fixed" ? "#F59E0B" : "#4ADE80"}
+                fontSize="11"
+                fontWeight="bold"
+                textAnchor="middle"
+                fontFamily="monospace"
+              >
+                {roleB === "fixed" ? "LADO FIJO" : "LADO LIBRE"}
+              </text>
+              <text x="0" y="34" fill="#94A3B8" fontSize="9.5" textAnchor="middle">
+                {roleB === "fixed" ? "Fija axialmente" : "Permite dilatación"}
+              </text>
+            </g>
+          </g>
+
+          {/* ========================================================= */}
+          {/* APPLIED FORCES (Radial Fr and Axial Fa with NO overlap)   */}
+          {/* ========================================================= */}
+
+          {/* Radial Load Fr (Vertical Red Arrow downwards) */}
+          {Fr > 0 && (
+            <g transform={`translate(${loadX}, 0)`}>
+              {/* Arrow shaft */}
+              <line
+                x1="0"
+                y1="34"
+                x2="0"
+                y2={shaftY - 3}
+                stroke="#EF4444"
+                strokeWidth="3"
+                markerEnd="url(#arrow-fr)"
+              />
+              {/* High contrast badge pill */}
+              <rect
+                x="-48"
+                y="8"
+                width="96"
+                height="22"
+                rx="4"
+                fill="#2A0F11"
+                stroke="#EF4444"
+                strokeWidth="1.5"
+              />
+              <text
+                x="0"
+                y="23"
+                fill="#FEE2E2"
+                fontSize="11.5"
+                fontWeight="bold"
+                textAnchor="middle"
+                fontFamily="monospace"
               >
                 Fr = {Fr.toFixed(1)} kN
               </text>
             </g>
           )}
 
-          {/* Axial Load Fa Arrow */}
+          {/* Axial Load Fa (Horizontal Copper Arrow pointing right, cleanly placed) */}
           {Fa > 0 && (
-            <g transform={`translate(${loadX - 60}, ${shaftY + shaftH / 2})`}>
+            <g transform={`translate(${loadX - 85}, ${shaftY + shaftH / 2})`}>
+              {/* Force arrow pointing toward right */}
               <line
                 x1="0"
                 y1="0"
-                x2="45"
+                x2="60"
                 y2="0"
-                stroke="#D7A15E"
-                strokeWidth="2.5"
-                markerEnd="url(#arrow-axial)"
+                stroke="#F59E0B"
+                strokeWidth="3"
+                markerEnd="url(#arrow-fa)"
               />
-              <rect x="-4" y="-18" width="60" height="15" fill="#121614" rx="2" stroke="#D7A15E" strokeWidth="1" />
+              {/* Clear badge placed cleanly to the left, never overlapping with Fr */}
+              <rect
+                x="-85"
+                y="-12"
+                width="82"
+                height="24"
+                rx="4"
+                fill="#261A0C"
+                stroke="#F59E0B"
+                strokeWidth="1.5"
+              />
               <text
-                x="26"
-                y="-7"
-                fill="#D7A15E"
-                fontSize="10"
+                x="-44"
+                y="4"
+                fill="#FEF3C7"
+                fontSize="11.5"
                 fontWeight="bold"
                 textAnchor="middle"
-                className="font-mono"
+                fontFamily="monospace"
               >
                 Fa = {Fa.toFixed(1)} kN
               </text>
             </g>
           )}
 
-          {/* Span line */}
-          <line
-            x1={supportAX}
-            y1={height - 20}
-            x2={supportBX}
-            y2={height - 20}
-            stroke="#526058"
-            strokeWidth="1"
-          />
-          <line x1={supportAX} y1={height - 25} x2={supportAX} y2={height - 15} stroke="#526058" strokeWidth="1" />
-          <line x1={supportBX} y1={height - 25} x2={supportBX} y2={height - 15} stroke="#526058" strokeWidth="1" />
-          <text
-            x={(supportAX + supportBX) / 2}
-            y={height - 8}
-            fill="#A8B0A6"
-            fontSize="10"
-            textAnchor="middle"
-            className="font-mono"
-          >
-            Luz entre apoyos (L)
-          </text>
+          {/* Zero load indicator if both are 0 */}
+          {Fr === 0 && Fa === 0 && (
+            <text x={loadX} y={shaftY - 10} fill="#94A3B8" fontSize="11" textAnchor="middle" fontStyle="italic">
+              (Sin carga aplicada en este apoyo)
+            </text>
+          )}
+
+          {/* ========================================================= */}
+          {/* DIMENSION SPAN LINE (Luz entre apoyos)                    */}
+          {/* ========================================================= */}
+          <g transform="translate(0, 222)">
+            {/* Extension lines from support centers */}
+            <line x1={supportAX} y1="-14" x2={supportAX} y2="4" stroke="#475569" strokeWidth="1" strokeDasharray="2,2" />
+            <line x1={supportBX} y1="-14" x2={supportBX} y2="4" stroke="#475569" strokeWidth="1" strokeDasharray="2,2" />
+
+            {/* Main horizontal span line with arrows */}
+            <line x1={supportAX} y1="0" x2={supportBX} y2="0" stroke="#64748B" strokeWidth="1.2" />
+            <line x1={supportAX} y1="-5" x2={supportAX} y2="5" stroke="#64748B" strokeWidth="1.5" />
+            <line x1={supportBX} y1="-5" x2={supportBX} y2="5" stroke="#64748B" strokeWidth="1.5" />
+
+            {/* Central Badge for label */}
+            <rect
+              x={(supportAX + supportBX) / 2 - 80}
+              y="-10"
+              width="160"
+              height="20"
+              rx="4"
+              fill="#18211D"
+              stroke="#374940"
+              strokeWidth="1"
+            />
+            <text
+              x={(supportAX + supportBX) / 2}
+              y="4"
+              fill="#E2E8F0"
+              fontSize="11"
+              fontWeight="bold"
+              textAnchor="middle"
+              fontFamily="monospace"
+            >
+              Luz entre apoyos (L)
+            </text>
+          </g>
         </svg>
       </div>
 
+      {/* Selected Candidate Pill */}
       {selectedBearingName && (
-        <div className="mt-2 pt-2 border-t border-[#2F3E37] flex items-center justify-between text-xs">
-          <span className="text-[#A8B0A6]">Candidato activo seleccionado:</span>
-          <span className="font-mono text-[#D7A15E] font-bold">{selectedBearingName}</span>
+        <div className="mt-3 pt-2 border-t border-[#2C3B34] flex flex-wrap items-center justify-between text-xs">
+          <span className="text-[#94A3B8]">Candidato activo seleccionado para cálculo:</span>
+          <div className="flex items-center gap-1.5 bg-[#101614] px-3 py-1 rounded border border-[#374940]">
+            <span className="w-2 h-2 rounded-full bg-[#D7A15E]" />
+            <span className="font-mono text-[#D7A15E] font-bold text-sm tracking-wide">
+              {selectedBearingName}
+            </span>
+          </div>
         </div>
       )}
     </div>
   );
 };
-

@@ -959,8 +959,8 @@ export const Wizard: React.FC<WizardProps> = ({
 
               {/* Family Recommendations Ranking */}
               <div className="space-y-3">
-                <h4 className="text-xs font-bold text-[#D7A15E] uppercase tracking-wider flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#D7A15E]" />
+                <h4 className="text-xs font-bold text-[#E5A85A] uppercase tracking-wider flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-[#E5A85A]" />
                   Recomendación de Familias de Rodamiento (Criterios ISO Catálogo Sección A)
                 </h4>
 
@@ -968,26 +968,26 @@ export const Wizard: React.FC<WizardProps> = ({
                   {selectionResult.familyRecommendations.slice(0, 4).map((f) => (
                     <div
                       key={f.family}
-                      className={`border rounded-lg p-3 space-y-1.5 transition-all ${
+                      className={`border-2 rounded-xl p-3.5 space-y-2 transition-all ${
                         f.accepted
-                          ? "bg-[#1C2420] border-[#2F3E37]"
-                          : "bg-[#121614]/80 border-[#E15A45]/30 opacity-75"
+                          ? "bg-[#18221D] border-[#374940] shadow-sm"
+                          : "bg-[#141A17] border-[#EF4444]/30 opacity-75"
                       }`}
                     >
                       <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                          <BearingSection family={f.family} size={32} />
-                          <span className="font-bold text-xs text-[#F3F0E7]">{f.title}</span>
+                        <div className="flex items-center gap-2.5">
+                          <BearingSection family={f.family} size={36} />
+                          <span className="font-bold text-sm text-[#FFFFFF]">{f.title}</span>
                         </div>
                         <span
-                          className={`text-[10px] px-2 py-0.5 rounded font-mono font-bold ${
-                            f.accepted ? "bg-[#7DAB6A]/20 text-[#7DAB6A]" : "bg-[#E15A45]/20 text-[#E15A45]"
+                          className={`text-xs px-2.5 py-0.5 rounded-full font-mono font-bold ${
+                            f.accepted ? "bg-[#22C55E]/20 text-[#4ADE80] border border-[#22C55E]/40" : "bg-[#EF4444]/20 text-[#EF4444] border border-[#EF4444]/40"
                           }`}
                         >
                           {f.accepted ? "APTO" : "DESCARTADO"}
                         </span>
                       </div>
-                      <div className="text-[11px] text-[#A8B0A6] pl-1">
+                      <div className="text-xs text-[#CBD5E1] pl-1 leading-relaxed">
                         {f.accepted ? f.reasons[0] : f.rejections[0]}
                       </div>
                     </div>
@@ -998,18 +998,18 @@ export const Wizard: React.FC<WizardProps> = ({
               {/* Sizing / Candidates List */}
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <h4 className="text-xs font-bold text-[#D7A15E] uppercase tracking-wider flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#D7A15E]" />
+                  <h4 className="text-xs font-bold text-[#E5A85A] uppercase tracking-wider flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-[#E5A85A]" />
                     Candidatos Rankeados en Catálogo (Capacidad C req = {formatKn(selectionResult.requiredC)})
                   </h4>
-                  <span className="text-xs text-[#A8B0A6]">
+                  <span className="text-xs text-[#CBD5E1] font-mono bg-[#18221D] px-2.5 py-1 rounded border border-[#374940]">
                     {selectionResult.candidates.filter((c) => c.status === "pass").length} tamaños aptos
                   </span>
                 </div>
 
                 {selectionResult.candidates.length === 0 ? (
-                  <div className="bg-[#121614] border border-[#2F3E37] rounded-xl p-6 text-center text-xs text-[#A8B0A6] space-y-2">
-                    <p className="text-[#D7A15E] font-bold">
+                  <div className="bg-[#141A17] border-2 border-[#374940] rounded-xl p-6 text-center text-xs text-[#CBD5E1] space-y-2">
+                    <p className="text-[#E5A85A] font-bold text-sm">
                       No hay tamaños que entren en el diámetro d = {boreMm} mm dentro del catálogo semilla.
                     </p>
                     <p>
@@ -1021,55 +1021,55 @@ export const Wizard: React.FC<WizardProps> = ({
                     {selectionResult.candidates.map((cand) => (
                       <div
                         key={cand.bearingId}
-                        className={`bg-[#121614] border rounded-xl p-4 transition-all hover:border-[#D7A15E]/50 ${
-                          cand.status === "pass" ? "border-[#2F3E37]" : "border-[#E15A45]/30 opacity-80"
+                        className={`bg-[#18221D] border-2 rounded-xl p-4 transition-all hover:border-[#E5A85A] ${
+                          cand.status === "pass" ? "border-[#374940] shadow-md" : "border-[#EF4444]/40 opacity-80"
                         }`}
                       >
                         <div className="flex flex-wrap items-center justify-between gap-3">
                           <div className="flex items-center gap-3">
-                            <BearingSection family={cand.bearing.family} size={48} />
+                            <BearingSection family={cand.bearing.family} size={54} />
                             <div>
                               <div className="flex items-center gap-2">
-                                <span className="font-mono text-base font-bold text-[#D7A15E]">
+                                <span className="font-mono text-lg font-bold text-[#E5A85A] tracking-wide">
                                   {cand.bearing.designation}
                                 </span>
                                 <span
-                                  className={`text-[11px] px-2 py-0.5 rounded font-mono font-bold ${
+                                  className={`text-xs px-2.5 py-0.5 rounded-full font-mono font-bold ${
                                     cand.status === "pass"
-                                      ? "bg-[#7DAB6A]/20 text-[#7DAB6A] border border-[#7DAB6A]/40"
-                                      : "bg-[#E15A45]/20 text-[#E15A45] border border-[#E15A45]/40"
+                                      ? "bg-[#22C55E]/20 text-[#4ADE80] border border-[#22C55E]/50"
+                                      : "bg-[#EF4444]/20 text-[#EF4444] border border-[#EF4444]/50"
                                   }`}
                                 >
                                   {cand.status === "pass" ? "CUMPLE" : "NO CUMPLE"}
                                 </span>
-                                <span className="text-[10px] text-[#A8B0A6] bg-[#1C2420] px-1.5 py-0.5 rounded border border-[#2F3E37]">
+                                <span className="text-xs text-[#94A3B8] bg-[#101614] px-2 py-0.5 rounded border border-[#374940]">
                                   {cand.bearing.source === "sample" ? "Muestra" : "Usuario"}
                                 </span>
                               </div>
-                              <div className="text-xs text-[#A8B0A6] mt-0.5">
-                                {formatDimension(cand.bearing.boreMm)} × {formatDimension(cand.bearing.outsideMm)} × {formatDimension(cand.bearing.widthMm)} · C = {formatKn(cand.bearing.CkN)} · C0 = {formatKn(cand.bearing.C0kN)}
+                              <div className="text-xs text-[#CBD5E1] font-mono mt-1">
+                                {formatDimension(cand.bearing.boreMm)} × {formatDimension(cand.bearing.outsideMm)} × {formatDimension(cand.bearing.widthMm)} · C = <strong className="text-white">{formatKn(cand.bearing.CkN)}</strong> · C0 = <strong className="text-white">{formatKn(cand.bearing.C0kN)}</strong>
                               </div>
                             </div>
                           </div>
 
-                          <div className="flex items-center gap-4 text-xs font-mono">
+                          <div className="flex items-center gap-5 text-xs font-mono">
                             <div className="text-right">
-                              <div className="text-[#A8B0A6] text-[11px]">Vida Nominal:</div>
-                              <div className="text-sm font-bold text-[#F3F0E7]">
+                              <div className="text-[#94A3B8] text-[11px] font-semibold">Vida Nominal:</div>
+                              <div className="text-base font-bold text-[#FFFFFF]">
                                 {formatHours(cand.Lnmh ?? cand.L10h)}
                               </div>
                             </div>
                             <div className="text-right">
-                              <div className="text-[#A8B0A6] text-[11px]">Seguridad s0:</div>
+                              <div className="text-[#94A3B8] text-[11px] font-semibold">Seguridad s0:</div>
                               <div
-                                className={`text-sm font-bold ${
-                                  cand.s0 >= cand.s0Required ? "text-[#7DAB6A]" : "text-[#E15A45]"
+                                className={`text-base font-bold ${
+                                  cand.s0 >= cand.s0Required ? "text-[#4ADE80]" : "text-[#EF4444]"
                                 }`}
                               >
                                 {cand.s0.toFixed(2)}
                               </div>
                             </div>
-                            <div className="flex items-center gap-1.5">
+                            <div className="flex items-center gap-2">
                               <button
                                 onClick={() =>
                                   onSelectCandidateForBreakdown(
@@ -1078,13 +1078,13 @@ export const Wizard: React.FC<WizardProps> = ({
                                     activePosIdx
                                   )
                                 }
-                                className="px-3 py-1.5 bg-[#2A3530] hover:bg-[#394741] text-[#F3F0E7] rounded font-semibold text-xs transition-colors border border-[#3E4F47]"
+                                className="px-3.5 py-2 bg-[#26352E] hover:bg-[#34463D] text-[#FFFFFF] rounded-lg font-bold text-xs transition-colors border border-[#44584E]"
                               >
                                 Ficha de cálculo
                               </button>
                               <button
                                 onClick={() => onAddToComparison(cand)}
-                                className="px-3 py-1.5 bg-[#1C2420] hover:bg-[#2A3530] text-[#D7A15E] rounded font-semibold text-xs transition-colors border border-[#2F3E37]"
+                                className="px-3 py-2 bg-[#101614] hover:bg-[#202B25] text-[#E5A85A] rounded-lg font-bold text-xs transition-colors border border-[#374940]"
                               >
                                 Comparar
                               </button>
@@ -1093,10 +1093,17 @@ export const Wizard: React.FC<WizardProps> = ({
                         </div>
 
                         {/* Engineering Reason Snippet */}
-                        <div className="mt-2 pt-2 border-t border-[#242F2A] text-xs text-[#A8B0A6] flex items-center justify-between">
-                          <span>{cand.reasons[0] ?? "Calculado según norma ISO 281."}</span>
-                          <span className="text-[11px] text-[#A8B0A6]">
-                            n = {formatRpm(speedRpm)} ({(cand.speedRatio * 100).toFixed(0)}% de n_lim)
+                        <div className="mt-3 pt-2.5 border-t border-[#2A3932] text-xs text-[#E2E8F0] flex flex-wrap items-center justify-between gap-2">
+                          <span className="flex items-center gap-1.5">
+                            {cand.status === "pass" ? (
+                              <CheckCircle className="w-3.5 h-3.5 text-[#4ADE80] shrink-0" />
+                            ) : (
+                              <AlertTriangle className="w-3.5 h-3.5 text-[#EF4444] shrink-0" />
+                            )}
+                            {cand.reasons[0] ?? "Calculado según norma ISO 281."}
+                          </span>
+                          <span className="text-xs text-[#CBD5E1] font-mono bg-[#101614] px-2 py-0.5 rounded border border-[#2E3E36]">
+                            n = {formatRpm(speedRpm)} ({(cand.speedRatio * 100).toFixed(0)}% del límite)
                           </span>
                         </div>
                       </div>
