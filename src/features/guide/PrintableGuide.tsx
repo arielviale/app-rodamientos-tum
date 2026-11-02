@@ -212,9 +212,9 @@ export const PrintableGuide: React.FC<PrintableGuideProps> = ({ onBack }) => {
 
         {/* Pie legal */}
         <div className="border-t-2 border-neutral-800 pt-3 text-[10px] text-neutral-500 leading-relaxed">
-          <p className="font-bold text-neutral-700">DECLARACIÓN DE ALCANCE Y RESPONSABILIDAD TÉCNICA:</p>
+          <p className="font-bold text-neutral-700">DECLARACIÓN DE ALCANCE, RESPONSABILIDAD TÉCNICA Y FINALIDAD ACADÉMICA:</p>
           <p>
-            CALIBRE es una herramienta de asistencia y cálculo según normas ISO 281 e ISO 76. La vida nominal estimada es una probabilidad estadística del 90% libre de fatiga subsuperficial, no una garantía de funcionamiento. Verificá designaciones y tolerancias en el catálogo vigente del fabricante antes de mecanizar o montar piezas.
+            CALIBRE es una herramienta pedagógica desarrollada como iniciativa propia de estudio por un estudiante, con la sola voluntad de aportar al aprendizaje de la materia Mecánica II. El autor no asume responsabilidad alguna por los resultados ni decisiones técnicas derivadas. La vida nominal estimada es teórica (ISO 281 / ISO 76). Siempre verifique catálogos oficiales del fabricante antes de mecanizar o montar piezas.
           </p>
         </div>
       </div>

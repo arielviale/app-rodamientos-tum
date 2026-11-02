@@ -121,7 +121,9 @@ El motor de cálculo cuenta con tests unitarios estrictos en `src/engine/__tests
 
 ---
 
-## 📋 Declaración de Alcance y Responsabilidad Técnica
+## 📋 Declaración de Alcance, Responsabilidad Técnica y Finalidad Académica
 
-> CALIBRE es una ayuda de cálculo y una herramienta pedagógica de ingeniería. No reemplaza el criterio del fabricante ni un análisis integral de la máquina. La vida nominal es una estimación estadística de fatiga del camino de rodadura (90% de confiabilidad en $L_{10}$), no una garantía de funcionamiento. No cubre por sí sola modos de falla por montaje deficiente, corrosión, ajuste dimensional incorrecto, lubricación inadecuada o deterioro de obturaciones. Se recomienda verificar designaciones, capacidades y tolerancias en el catálogo vigente del fabricante antes de fabricar o mecanizar alojamientos.
+> **Nota del autor:** CALIBRE fue desarrollada como una iniciativa de estudio por un estudiante, con la sola voluntad de aportar al aprendizaje, facilitar la comprensión y sumar una herramienta práctica al cursado de la materia **Mecánica II** (después de los TP6 y TP7).
+> 
+> El autor **no se responsabiliza** por los resultados, cálculos, interpretaciones o decisiones de diseño industrial que se tomen a partir de esta herramienta. Esta aplicación es una ayuda de cálculo pedagógica y no reemplaza el criterio formal de la cátedra, la intervención de un profesional habilitado ni las especificaciones oficiales de los catálogos vigentes de los fabricantes de rodamientos. La vida nominal calculada es una estimación estadística teórica (ISO 281 / ISO 76).
 

@@ -197,17 +197,17 @@ export function App() {
         <div className="max-w-6xl mx-auto px-4 space-y-3">
           <div className="flex items-center gap-2 text-[#D7A15E] font-semibold">
             <Shield className="w-4 h-4" />
-            <span>ALCANCE DEL CÁLCULO Y RESPONSABILIDAD TÉCNICA</span>
+            <span>ALCANCE DEL CÁLCULO, RESPONSABILIDAD TÉCNICA Y FINALIDAD ACADÉMICA</span>
           </div>
           <p className="leading-relaxed text-[11px] text-justify">
-            CALIBRE es una ayuda de cálculo. No reemplaza el criterio del fabricante ni un análisis de la máquina completa.
-            La vida nominal es una estimación estadística de fatiga del camino de rodadura (90% de confiabilidad en L10), no una garantía.
-            No cubre por sí sola fallas por montaje, corrosión, ajuste incorrecto, jaula, sello o lubricante inadecuado.
-            Verificá designación, capacidades y factores en el catálogo vigente antes de fabricar o comprar.
+            CALIBRE es una ayuda pedagógica de cálculo desarrollada como iniciativa propia por un estudiante, con la sola voluntad de aportar al estudio y facilitar la comprensión práctica de la materia <strong>Mecánica II</strong>. 
+            El autor no se responsabiliza por los resultados, cálculos, interpretaciones o decisiones de diseño industrial que se tomen a partir de esta herramienta.
+            Esta aplicación no sustituye el criterio de la cátedra, la firma de un profesional habilitado ni el análisis riguroso del fabricante del rodamiento o de la máquina completa.
+            La vida nominal calculada es una estimación estadística teórica de fatiga de rodadura (conforme a normas ISO 281 e ISO 76) y no representa una garantía contractual ni operativa. Se recomienda verificar siempre las designaciones, capacidades de carga y tolerancias en los catálogos técnicos vigentes antes de fabricar, adquirir o montar componentes.
           </p>
           <div className="flex flex-wrap items-center justify-between border-t border-[#242F2A] pt-3 text-[10px] text-[#526058] font-mono">
-            <div>CALIBRE · Motor de Ingeniería Puro ISO 281 / ISO 76</div>
-            <div>Datos semilla marcados como "Muestra" · No afiliado con fabricantes</div>
+            <div>CALIBRE · Proyecto didáctico para Mecánica II (TUM) · ISO 281 / ISO 76</div>
+            <div>Iniciativa de estudio estudiantil · Datos de catálogo de uso referencial</div>
           </div>
         </div>
       </footer>
