@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>CALIBRE — Guía Didáctica: Ejercicio Práctico Paso a Paso (Mecánica II - TUM)</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 18mm 16mm 18mm 16mm;
+    }
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: #1A1A17;
+      background-color: #FFFFFF;
+      line-height: 1.5;
+      font-size: 10pt;
+      margin: 0;
+      padding: 0;
+    }
+    h1, h2, h3, h4 {
+      color: #0F172A;
+      margin-top: 1.2em;
+      margin-bottom: 0.4em;
+      font-weight: 700;
+    }
+    h1 {
+      font-size: 18pt;
+      border-bottom: 2px solid #0F172A;
+      padding-bottom: 4px;
+      margin-top: 0;
+    }
+    h2 {
+      font-size: 13pt;
+      border-bottom: 1px solid #CBD5E1;
+      padding-bottom: 3px;
+      color: #1E293B;
+      page-break-after: avoid;
+    }
+    h3 {
+      font-size: 11pt;
+      color: #334155;
+      page-break-after: avoid;
+    }
+    .header-box {
+      border: 1px solid #CBD5E1;
+      background-color: #F8FAFC;
+      border-radius: 6px;
+      padding: 10px 14px;
+      margin-bottom: 16px;
+    }
+    .header-box .institution {
+      font-size: 9pt;
+      font-weight: 700;
+      color: #475569;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .header-box .doc-title {
+      font-size: 14pt;
+      font-weight: 800;
+      color: #0F172A;
+      margin: 3px 0;
+    }
+    .header-box .doc-subtitle {
+      font-size: 9pt;
+      color: #64748B;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0 16px 0;
+      font-size: 9pt;
+    }
+    th, td {
+      border: 1px solid #CBD5E1;
+      padding: 6px 10px;
+      text-align: left;
+    }
+    th {
+      background-color: #F1F5F9;
+      color: #1E293B;
+      font-weight: 700;
+    }
+    tr:nth-child(even) td {
+      background-color: #F8FAFC;
+    }
+    .mono {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+    .badge {
+      display: inline-block;
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-size: 8pt;
+      font-weight: 700;
+      font-family: monospace;
+    }
+    .badge-pass {
+      background-color: #DCFCE7;
+      color: #166534;
+      border: 1px solid #86EFAC;
+    }
+    .badge-fixed {
+      background-color: #FEF3C7;
+      color: #92400E;
+      border: 1px solid #FCD34D;
+    }
+    .badge-free {
+      background-color: #DCFCE7;
+      color: #166534;
+      border: 1px solid #86EFAC;
+    }
+    .step-card {
+      border: 1px solid #CBD5E1;
+      background-color: #F8FAFC;
+      border-radius: 6px;
+      padding: 10px 14px;
+      margin-bottom: 12px;
+      page-break-inside: avoid;
+    }
+    .step-card-header {
+      font-weight: 700;
+      font-size: 10pt;
+      color: #0F172A;
+      margin-bottom: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px dashed #CBD5E1;
+      padding-bottom: 4px;
+    }
+    .math-block {
+      background-color: #FFFFFF;
+      border-left: 3px solid #0284C7;
+      padding: 8px 12px;
+      margin: 8px 0;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 9pt;
+      color: #0F172A;
+      border-top: 1px solid #E2E8F0;
+      border-right: 1px solid #E2E8F0;
+      border-bottom: 1px solid #E2E8F0;
+      border-radius: 0 4px 4px 0;
+      page-break-inside: avoid;
+    }
+    .result-box {
+      border: 2px solid #16A34A;
+      background-color: #F0FDF4;
+      border-radius: 6px;
+      padding: 12px 16px;
+      margin: 12px 0;
+      page-break-inside: avoid;
+    }
+    .result-box .title {
+      font-size: 11pt;
+      font-weight: 800;
+      color: #15803D;
+      margin-bottom: 4px;
+    }
+    .legal-footer {
+      border-top: 2px solid #0F172A;
+      margin-top: 20px;
+      padding-top: 8px;
+      font-size: 7.5pt;
+      color: #64748B;
+      text-align: justify;
+      line-height: 1.4;
+      page-break-inside: avoid;
+    }
+    .page-break {
+      page-break-before: always;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER INSTITUCIONAL -->
+  <div class="header-box">
+    <div class="institution">Tecnicatura Universitaria en Mecatrónica (TUM) · Cátedra Mecánica II</div>
+    <div class="doc-title">CALIBRE — Guía Didáctica: Resolución de Ejercicio Paso a Paso</div>
+    <div class="doc-subtitle">Selección, Verificación Cinemática y Vida a la Fatiga de Rodamientos (TP6 y TP7) · Normas ISO 281 & ISO 76</div>
+  </div>
+
+  <!-- SECCIÓN 1: ENUNCIADO -->
+  <h2>1. Enunciado del Problema Real (Caso de Estudio)</h2>
+  <p>
+    Se desea seleccionar y verificar el rodamiento del <strong>Apoyo A (Lado Fijo)</strong> del eje de salida de un reductor industrial que acciona un ventilador centrífugo de tiro inducido. A partir del equilibrio estático del árbol y el análisis de flexotorsión, se obtuvieron las siguientes solicitaciones en el muñón de apoyo:
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 32%;">Variable / Parámetro</th>
+        <th style="width: 22%;">Valor Numérico</th>
+        <th>Significado Técnico en la Aplicación</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Diámetro del asiento ($d$)</strong></td>
+        <td><strong class="mono">40 mm</strong></td>
+        <td>Diámetro interior necesario para el rodamiento</td>
+      </tr>
+      <tr>
+        <td><strong>Carga radial en el apoyo ($F_r$)</strong></td>
+        <td><strong class="mono">8,0 kN</strong> (8000 N)</td>
+        <td>Reacción radial debida a flexión y peso del conjunto</td>
+      </tr>
+      <tr>
+        <td><strong>Carga axial en el apoyo ($F_a$)</strong></td>
+        <td><strong class="mono">2,0 kN</strong> (2000 N)</td>
+        <td>Empuje longitudinal transmitido por la hélice / transmisión</td>
+      </tr>
+      <tr>
+        <td><strong>Velocidad de rotación ($n$)</strong></td>
+        <td><strong class="mono">1.500 r.p.m.</strong></td>
+        <td>Velocidad angular de servicio en régimen nominal</td>
+      </tr>
+      <tr>
+        <td><strong>Vida requerida ($L_{h,\text{req}}$)</strong></td>
+        <td><strong class="mono">20.000 horas</strong></td>
+        <td>Exigencia de diseño para servicio industrial (Tabla 9 ISO)</td>
+      </tr>
+      <tr>
+        <td><strong>Confiabilidad requerida</strong></td>
+        <td><strong class="mono">90% ($a_1 = 1,00$)</strong></td>
+        <td>Criterio estándar de fatiga de caminos de rodadura ($L_{10h}$)</td>
+      </tr>
+      <tr>
+        <td><strong>Función del Apoyo A</strong></td>
+        <td><span class="badge badge-fixed">LADO FIJO</span></td>
+        <td>Retiene el eje en ambos sentidos longitudinales</td>
+      </tr>
+      <tr>
+        <td><strong>Función del Apoyo B</strong></td>
+        <td><span class="badge badge-free">LADO LIBRE</span></td>
+        <td>Debe permitir la libre dilatación térmica axial ($\pm\Delta L$)</td>
+      </tr>
+      <tr>
+        <td><strong>Temperatura y Choques</strong></td>
+        <td><strong class="mono">65 °C</strong> · Choque normal</td>
+        <td>Régimen térmico y dinámico habitual de planta industrial</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- SECCIÓN 2: CARGA EN LA APP -->
+  <h2>2. Guía de Carga en la Aplicación CALIBRE (Paso a Paso)</h2>
+
+  <!-- PASO 1 -->
+  <div class="step-card">
+    <div class="step-card-header">
+      <span>Paso 1: Aplicación y Vida Requerida</span>
+      <span class="mono" style="color: #0284C7;">Objetivo: 20.000 h · 90%</span>
+    </div>
+    <p style="margin: 4px 0;">
+      • En <strong>Tipo de máquina</strong>, seleccionar: <em>"Industria 8 h (carga variable)"</em>.<br>
+      • El sistema sugiere el rango de 10.000 a 25.000 horas (ISO Catálogo p. 83). Ajustar el valor en <strong>20.000 horas</strong>.<br>
+      • En <strong>Confiabilidad</strong>, mantener <strong>90% ($a_1 = 1,00$)</strong> para vida básica nominal $L_{10h}$.
+    </p>
+  </div>
+
+  <!-- PASO 2 -->
+  <div class="step-card">
+    <div class="step-card-header">
+      <span>Paso 2: Geometría del Eje y Disposición de Apoyos</span>
+      <span class="mono" style="color: #0284C7;">d = 40 mm · Fijo vs Libre</span>
+    </div>
+    <p style="margin: 4px 0;">
+      • <strong>Diámetro del asiento ($d$):</strong> ingresar <strong class="mono">40 mm</strong>.<br>
+      • <strong>Apoyo A (Izquierdo):</strong> seleccionar <span class="badge badge-fixed">LADO FIJO</span>.<br>
+      • <strong>Apoyo B (Derecho):</strong> seleccionar <span class="badge badge-free">LADO LIBRE</span>.<br>
+      • Mantener marcada la casilla <em>"Permitir aro exterior holgado en apoyo libre"</em> para permitir el desplazamiento por dilatación.
+    </p>
+    <p style="margin: 4px 0 0 0; font-size: 8.5pt; color: #475569;">
+      <em>Observación en pantalla:</em> El croquis cinemático SVG superior ilustra inmediatamente los topes de fijación en el Apoyo A y las flechas con la cota <strong class="mono">±ΔL DILATACIÓN</strong> en el Apoyo B.
+    </p>
+  </div>
+
+  <!-- PASO 3 -->
+  <div class="step-card">
+    <div class="step-card-header">
+      <span>Paso 3: Cargas Aplicadas y Velocidad</span>
+      <span class="mono" style="color: #0284C7;">Fr = 8,0 kN · Fa = 2,0 kN · 1.500 rpm</span>
+    </div>
+    <p style="margin: 4px 0;">
+      • <strong>Carga radial ($F_r$):</strong> <strong class="mono">8.0 kN</strong>.<br>
+      • <strong>Carga axial ($F_a$):</strong> <strong class="mono">2.0 kN</strong>.<br>
+      • <strong>Velocidad ($n$):</strong> <strong class="mono">1500 r.p.m.</strong><br>
+      • <strong>Nivel de choques:</strong> seleccionar <em>Normal</em>.<br>
+      <em>Observación en pantalla:</em> En el esquema del eje se visualizan las flechas de fuerza sin solaparse: el vector radial rojo hacia abajo y el vector axial cobrizo hacia la derecha.
+    </p>
+  </div>
+
+  <!-- PASO 4 -->
+  <div class="step-card">
+    <div class="step-card-header">
+      <span>Paso 4: Entorno de Trabajo y Requisitos</span>
+      <span class="mono" style="color: #0284C7;">65 °C · Desalineación &lt; 2 min</span>
+    </div>
+    <p style="margin: 4px 0;">
+      • <strong>Desalineación angular:</strong> <em>"Sin flexión / Alineación rígida (&lt; 2 min)"</em>.<br>
+      • <strong>Temperatura:</strong> <strong class="mono">65 °C</strong> (admisible para acero estándar hasta 120 °C).<br>
+      • <strong>Contaminación:</strong> <em>"Limpieza normal"</em>.
+    </p>
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- PASO 5: RESULTADOS -->
+  <h2>3. Dictamen Técnico y Selección Óptima (Paso 5)</h2>
+
+  <div class="result-box">
+    <div class="title">🥇 RODAMIENTO SELECCIONADO: SKF 6208 (Rígido de Bolas de 1 Hilera)</div>
+    <div style="font-size: 9pt; color: #1E293B; margin-bottom: 6px;">
+      Dimensiones: <strong class="mono">40 × 80 × 18 mm</strong> · Capacidad Dinámica: <strong class="mono">C = 32,5 kN</strong> · Capacidad Estática: <strong class="mono">C0 = 19,0 kN</strong>
+    </div>
+    <table style="margin: 8px 0; background-color: #FFFFFF;">
+      <thead>
+        <tr>
+          <th>Parámetro Evaluado</th>
+          <th>Valor Calculado</th>
+          <th>Exigencia Requerida</th>
+          <th>Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Vida Nominal Básica ($L_{10h}$)</strong></td>
+          <td class="mono font-bold" style="color: #15803D;"><strong>74.436 horas</strong></td>
+          <td>20.000 horas</td>
+          <td><span class="badge badge-pass">CUMPLE (Margen 3,7x)</span></td>
+        </tr>
+        <tr>
+          <td><strong>Seguridad Estática ($s_0 = C_0 / P_0$)</strong></td>
+          <td class="mono font-bold" style="color: #15803D;"><strong>2,38</strong></td>
+          <td>&ge; 1,00 (ISO 76)</td>
+          <td><span class="badge badge-pass">CUMPLE (Excelente)</span></td>
+        </tr>
+        <tr>
+          <td><strong>Velocidad de Trabajo vs Límite</strong></td>
+          <td class="mono">1.500 r.p.m. (15,8% de n_lim)</td>
+          <td>9.500 r.p.m.</td>
+          <td><span class="badge badge-pass">CUMPLE (Holgado)</span></td>
+        </tr>
+        <tr>
+          <td><strong>Carga Axial vs Límite Admisible</strong></td>
+          <td class="mono">Fa = 2,0 kN</td>
+          <td>&le; 0,5 C0 = 9,5 kN</td>
+          <td><span class="badge badge-pass">CUMPLE SEGURO</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="font-size: 8.5pt; color: #334155; margin-top: 4px;">
+      <strong>Justificación de Ingeniería frente a la Serie 63:</strong> El tamaño 6308 ($40\times90\times23\text{ mm}$, $C=42,3\text{ kN}$) alcanzaría 163.500 h, pero resulta un 70% más pesado ($0,63\text{ kg}$ vs $0,37\text{ kg}$) y considerablemente más costoso. Por tanto, el <strong>6208 representa la solución técnica y económicamente óptima</strong>.
+    </div>
+  </div>
+
+  <!-- SECCIÓN 4: MEMORIA MATEMÁTICA AUDITABLE -->
+  <h2>4. Memoria Matemática Auditable (Desglose Teórico Cátedra Mecánica II)</h2>
+  <p>Al pulsar el botón <strong>"Ficha de cálculo"</strong> en la aplicación, se obtiene el siguiente desarrollo analítico:</p>
+
+  <h3>4.1 Determinación de la Carga Dinámica Equivalente ($P$) según ISO 281</h3>
+  <p>Verificamos si la componente axial supera el cono de contacto definido por el umbral $e$:</p>
+  <div class="math-block">
+    1) Relación de solicitación:
+       Fa / Fr = 2,0 kN / 8,0 kN = 0,250
+
+    2) Factor de carga axial para cálculo de e (Tabla 8 SKF / p. 315):
+       f0 · Fa / C0 = (14 · 2,0 kN) / 19,0 kN = 1,473
+
+    3) Interpolación en Tabla 8 para juego radial normal (CN):
+       Entre fila (1,38 → e=0,30) y fila (2,07 → e=0,34):
+       e ≈ 0,305
+
+    4) Criterio de Decisión:
+       Fa / Fr = 0,250 ≤ e = 0,305  ===>  P = Fr = 8,00 kN
+  </div>
+  <p style="font-size: 8.5pt; color: #475569; margin-top: -4px;">
+    <em>Interpretación física:</em> El empuje axial es moderado y es absorbido por el fondo de garganta sin que las bolas se monten en el resalte de pista. Por ende, la carga dinámica equivalente coincide con la radial pura.
+  </p>
+
+  <h3>4.2 Cálculo de Vida Nominal a la Fatiga ($L_{10}$ y $L_{10h}$)</h3>
+  <div class="math-block">
+    • Exponente de fatiga para bolas: p = 3
+    • Capacidad dinámica de catálogo: C = 32,5 kN
+
+    L10 = (C / P)^p = (32,5 / 8,0)^3 = (4,0625)^3 = 66,992 millones de revoluciones
+
+    L10h = [10^6 / (60 · n)] · L10
+    L10h = [10^6 / (60 · 1500)] · 66,992 = 11,111 · 66,992 = 74.436 horas
+  </div>
+
+  <h3>4.3 Verificación de Capacidad Estática ($P_0$ y $s_0$) según ISO 76</h3>
+  <div class="math-block">
+    P0 = max(Fr ; 0,6 · Fr + 0,5 · Fa)
+    P0 = max(8,0 ; 0,6 · 8,0 + 0,5 · 2,0) = max(8,0 ; 5,8) = 8,00 kN
+
+    s0 = C0 / P0 = 19,0 kN / 8,00 kN = 2,375 ≈ 2,38
+
+    Requisito ISO 76 (Tabla 11): Rodamiento que gira con choque normal exige s0 ≥ 1,00.
+    Como 2,38 ≥ 1,00, el rodamiento NO sufrirá deformación plástica permanente ni huellas.
+  </div>
+
+  <!-- PIE LEGAL -->
+  <div class="legal-footer">
+    <strong>DECLARACIÓN DE ALCANCE Y RESPONSABILIDAD TÉCNICA (CALIBRE ENGINE v1.0.0):</strong><br>
+    Este informe constituye una ayuda didáctica y de ingeniería según las directivas de las normas internacionales ISO 281 e ISO 76. La vida nominal $L_{10}$ estimada representa una probabilidad estadística del 90% libre de falla por fatiga subsuperficial en los caminos de rodadura. No contempla fallas originadas por contaminación abrasiva extrema, lubricante degradado, apriete dimensional incorrecto o montaje defectuoso. Se recomienda contrastar siempre las tolerancias dimensionales en el catálogo vigente del fabricante antes de mandar a mecanizar los alojamientos.
+  </div>
+
+</body>
+</html>

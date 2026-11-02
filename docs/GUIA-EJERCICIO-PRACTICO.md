@@ -200,3 +200,4 @@ Al presionar el botón **"Informe"**, la aplicación genera automáticamente la 
 3. Croquis cinemático del eje con acotación de apoyos y vectores de fuerza.
 4. Dictamen técnico de aprobación.
 5. Pie legal de alcance y responsabilidad técnica conforme a normas internacionales.
+

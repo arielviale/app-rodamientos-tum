@@ -7,7 +7,9 @@ import { PrintableReport } from "./features/report/PrintableReport";
 import { BearingComparator } from "./features/compare/BearingComparator";
 import { ManualBearingModal } from "./features/catalog/ManualBearingModal";
 import { ShaftHousingFitsModal } from "./features/fits/ShaftHousingFitsModal";
-import { PlusCircle, Sliders, Scale, Shield } from "lucide-react";
+import { ExerciseGuideModal } from "./features/guide/ExerciseGuideModal";
+import { PrintableGuide } from "./features/guide/PrintableGuide";
+import { PlusCircle, Sliders, Scale, Shield, BookOpen } from "lucide-react";
 
 export function App() {
   const [catalog, setCatalog] = useState<Bearing[]>(SAMPLE_BEARINGS);
@@ -18,6 +20,9 @@ export function App() {
   } | null>(null);
 
   const [showReport, setShowReport] = useState(false);
+  const [showGuideModal, setShowGuideModal] = useState(false);
+  const [showPrintableGuide, setShowPrintableGuide] = useState(false);
+  const [loadExerciseTrigger, setLoadExerciseTrigger] = useState(0);
   const [showFitsModal, setShowFitsModal] = useState(false);
   const [showManualModal, setShowManualModal] = useState(false);
   const [comparisonList, setComparisonList] = useState<Candidate[]>([]);
@@ -63,6 +68,10 @@ export function App() {
     setComparisonList(comparisonList.filter((c) => c.bearingId !== id));
   };
 
+  if (showPrintableGuide) {
+    return <PrintableGuide onBack={() => setShowPrintableGuide(false)} />;
+  }
+
   if (showReport && selectedCandidate) {
     return (
       <PrintableReport
@@ -100,6 +109,15 @@ export function App() {
 
           <div className="flex items-center gap-2">
             <button
+              onClick={() => setShowGuideModal(true)}
+              className="px-3 py-1.5 rounded-lg bg-[#E5A85A] hover:bg-[#D79848] text-[#121614] font-bold text-xs transition-colors flex items-center gap-1.5 shadow-sm"
+              title="Guía didáctica y ejercicio resuelto paso a paso (Mecánica II - TUM)"
+            >
+              <BookOpen className="w-4 h-4" />
+              <span>Guía Didáctica (TP6 / TP7)</span>
+            </button>
+
+            <button
               onClick={() => setShowFitsModal(true)}
               className="px-2.5 py-1.5 rounded bg-[#121614] hover:bg-[#2A3530] text-xs text-[#A8B0A6] hover:text-[#F3F0E7] border border-[#2F3E37] transition-colors flex items-center gap-1.5"
               title="Criterios de ajuste para eje y alojamiento"
@@ -136,8 +154,13 @@ export function App() {
           onSelectCandidateForBreakdown={(candidate, input, posIdx) =>
             setSelectedCandidate({ candidate, input, posIdx })
           }
+          onDirectPrintCandidate={(candidate, input, posIdx) => {
+            setSelectedCandidate({ candidate, input, posIdx });
+            setShowReport(true);
+          }}
           onAddToComparison={handleAddToComparison}
-          comparisonCount={comparisonList.length}
+          onOpenGuide={() => setShowGuideModal(true)}
+          loadExerciseTrigger={loadExerciseTrigger}
         />
 
         {/* Side by side comparison section */}
@@ -206,6 +229,20 @@ export function App() {
         <ManualBearingModal
           onAddBearing={handleAddBearing}
           onClose={() => setShowManualModal(false)}
+        />
+      )}
+
+      {showGuideModal && (
+        <ExerciseGuideModal
+          onClose={() => setShowGuideModal(false)}
+          onLoadExercise={() => {
+            setShowGuideModal(false);
+            setLoadExerciseTrigger((prev) => prev + 1);
+          }}
+          onPrintGuide={() => {
+            setShowGuideModal(false);
+            setShowPrintableGuide(true);
+          }}
         />
       )}
     </div>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Bearing,
   Candidate,
@@ -23,19 +23,26 @@ import {
   Layers,
   ShieldCheck,
   Zap,
+  Printer,
+  BookOpen,
 } from "lucide-react";
 
 interface WizardProps {
   catalog: Bearing[];
   onSelectCandidateForBreakdown: (candidate: Candidate, input: SelectionInput, posIdx: number) => void;
+  onDirectPrintCandidate: (candidate: Candidate, input: SelectionInput, posIdx: number) => void;
   onAddToComparison: (candidate: Candidate) => void;
-  comparisonCount: number;
+  onOpenGuide: () => void;
+  loadExerciseTrigger?: number;
 }
 
 export const Wizard: React.FC<WizardProps> = ({
   catalog,
   onSelectCandidateForBreakdown,
+  onDirectPrintCandidate,
   onAddToComparison,
+  onOpenGuide,
+  loadExerciseTrigger,
 }) => {
   // Mode: "wizard" (select) vs "verify" (check specific)
   const [mode, setMode] = useState<"wizard" | "verify">("wizard");
@@ -92,16 +99,23 @@ export const Wizard: React.FC<WizardProps> = ({
     setRoleA("fixed");
     setRoleB("floating");
     setAllowLooseOuterRing(true);
-    setFr(8);
-    setFa(1.5);
+    setFr(8.0);
+    setFa(2.0);
     setSpeedRpm(1500);
     setShock("normal");
     setMisalignmentLevel("none");
-    setQuietRunning("high");
+    setQuietRunning("normal");
     setStiffness("normal");
     setTemperatureC(65);
+    setContamination("normal-cleanliness");
     setStep(5);
   };
+
+  useEffect(() => {
+    if (loadExerciseTrigger && loadExerciseTrigger > 0) {
+      applyPresetMotor();
+    }
+  }, [loadExerciseTrigger]);
 
   const applyPresetConveyor = () => {
     setMode("wizard");
@@ -270,8 +284,16 @@ export const Wizard: React.FC<WizardProps> = ({
         </div>
 
         {/* Quick Examples */}
-        <div className="flex items-center gap-2 text-xs">
-          <span className="text-[#A8B0A6] hidden sm:inline">Ejemplos listos:</span>
+        <div className="flex flex-wrap items-center gap-2 text-xs">
+          <button
+            onClick={onOpenGuide}
+            className="px-3 py-1.5 rounded-lg bg-[#E5A85A] hover:bg-[#D79848] text-[#121614] font-bold text-xs transition-colors flex items-center gap-1.5 shadow-sm mr-1"
+            title="Abrir guía paso a paso y ejercicio de Mecánica II (TP6 / TP7)"
+          >
+            <BookOpen className="w-3.5 h-3.5" />
+            Guía Didáctica (TP6 / TP7)
+          </button>
+          <span className="text-[#A8B0A6] hidden sm:inline">Ejemplos:</span>
           <button
             onClick={applyPresetMotor}
             className="px-2.5 py-1 rounded bg-[#2A3530] hover:bg-[#34423C] text-[11px] text-[#F3F0E7] border border-[#3E4F47] transition-colors flex items-center gap-1"
@@ -1081,6 +1103,20 @@ export const Wizard: React.FC<WizardProps> = ({
                                 className="px-3.5 py-2 bg-[#26352E] hover:bg-[#34463D] text-[#FFFFFF] rounded-lg font-bold text-xs transition-colors border border-[#44584E]"
                               >
                                 Ficha de cálculo
+                              </button>
+                              <button
+                                onClick={() =>
+                                  onDirectPrintCandidate(
+                                    cand,
+                                    currentInput,
+                                    activePosIdx
+                                  )
+                                }
+                                className="px-3 py-2 bg-[#D7A15E] hover:bg-[#BF8B49] text-[#121614] rounded-lg font-bold text-xs transition-colors flex items-center gap-1 shadow-sm"
+                                title="Generar e imprimir informe de cálculo oficial en PDF"
+                              >
+                                <Printer className="w-3.5 h-3.5" />
+                                <span>Informe PDF</span>
                               </button>
                               <button
                                 onClick={() => onAddToComparison(cand)}
