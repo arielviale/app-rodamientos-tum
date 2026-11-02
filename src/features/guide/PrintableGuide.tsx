@@ -214,7 +214,7 @@ export const PrintableGuide: React.FC<PrintableGuideProps> = ({ onBack }) => {
         <div className="border-t-2 border-neutral-800 pt-3 text-[10px] text-neutral-500 leading-relaxed">
           <p className="font-bold text-neutral-700">DECLARACIÓN DE ALCANCE, RESPONSABILIDAD TÉCNICA Y FINALIDAD ACADÉMICA:</p>
           <p>
-            CALIBRE es una herramienta pedagógica desarrollada como iniciativa propia de estudio por un estudiante, con la sola voluntad de aportar al aprendizaje de la materia Mecánica II. El autor no asume responsabilidad alguna por los resultados ni decisiones técnicas derivadas. La vida nominal estimada es teórica (ISO 281 / ISO 76). Siempre verifique catálogos oficiales del fabricante antes de mecanizar o montar piezas.
+            CALIBRE es una ayuda pedagógica de cálculo desarrollada como iniciativa propia de Hugo Ariel Martinez, estudiante de la Tecnicatura Universitaria en Mecatrónica (TUM), con la sola voluntad de aportar algo más al estudio y facilitar el aprendizaje de la materia Mecánica II. El autor no asume responsabilidad alguna por los resultados ni decisiones técnicas derivadas. La vida nominal estimada es teórica (ISO 281 / ISO 76). Siempre verifique catálogos oficiales del fabricante antes de mecanizar o montar piezas.
           </p>
         </div>
       </div>

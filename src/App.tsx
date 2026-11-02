@@ -200,7 +200,7 @@ export function App() {
             <span>ALCANCE DEL CÁLCULO, RESPONSABILIDAD TÉCNICA Y FINALIDAD ACADÉMICA</span>
           </div>
           <p className="leading-relaxed text-[11px] text-justify">
-            CALIBRE es una ayuda pedagógica de cálculo desarrollada como iniciativa propia por un estudiante, con la sola voluntad de aportar al estudio y facilitar la comprensión práctica de la materia <strong>Mecánica II</strong>. 
+            CALIBRE es una ayuda pedagógica de cálculo desarrollada como iniciativa propia de Hugo Ariel Martinez, estudiante de la Tecnicatura Universitaria en Mecatrónica (TUM), con la sola voluntad de aportar algo más al estudio y facilitar la comprensión práctica de la materia <strong>Mecánica II</strong>. 
             El autor no se responsabiliza por los resultados, cálculos, interpretaciones o decisiones de diseño industrial que se tomen a partir de esta herramienta.
             Esta aplicación no sustituye el criterio de la cátedra, la firma de un profesional habilitado ni el análisis riguroso del fabricante del rodamiento o de la máquina completa.
             La vida nominal calculada es una estimación estadística teórica de fatiga de rodadura (conforme a normas ISO 281 e ISO 76) y no representa una garantía contractual ni operativa. Se recomienda verificar siempre las designaciones, capacidades de carga y tolerancias en los catálogos técnicos vigentes antes de fabricar, adquirir o montar componentes.

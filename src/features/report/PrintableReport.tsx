@@ -196,7 +196,7 @@ export const PrintableReport: React.FC<PrintableReportProps> = ({
         <div className="pt-4 border-t-2 border-neutral-800 text-[10px] text-neutral-500 leading-relaxed space-y-1">
           <p className="font-bold text-neutral-700">DECLARACIÓN DE ALCANCE, RESPONSABILIDAD TÉCNICA Y FINALIDAD ACADÉMICA:</p>
           <p>
-            CALIBRE es una ayuda pedagógica de cálculo desarrollada como proyecto de estudio por un estudiante, con la sola voluntad de aportar y facilitar la comprensión práctica en la materia Mecánica II. El autor no asume responsabilidad alguna por los resultados o el uso de los mismos en proyectos industriales. No reemplaza el criterio de la cátedra ni la validación de un profesional habilitado o del fabricante. La vida nominal es una estimación estadística teórica (ISO 281 / ISO 76). Siempre verifique catálogos oficiales antes de fabricar o comprar.
+            CALIBRE es una ayuda pedagógica de cálculo desarrollada como iniciativa propia de Hugo Ariel Martinez, estudiante de la Tecnicatura Universitaria en Mecatrónica (TUM), con la sola voluntad de aportar algo más al estudio y facilitar la comprensión práctica en la materia Mecánica II. El autor no asume responsabilidad alguna por los resultados o el uso de los mismos en proyectos industriales. No reemplaza el criterio de la cátedra ni la validación de un profesional habilitado o del fabricante. La vida nominal es una estimación estadística teórica (ISO 281 / ISO 76). Siempre verifique catálogos oficiales antes de fabricar o comprar.
           </p>
         </div>
       </div>

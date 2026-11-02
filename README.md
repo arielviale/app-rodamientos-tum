@@ -123,7 +123,7 @@ El motor de cálculo cuenta con tests unitarios estrictos en `src/engine/__tests
 
 ## 📋 Declaración de Alcance, Responsabilidad Técnica y Finalidad Académica
 
-> **Nota del autor:** CALIBRE fue desarrollada como una iniciativa de estudio por un estudiante, con la sola voluntad de aportar al aprendizaje, facilitar la comprensión y sumar una herramienta práctica al cursado de la materia **Mecánica II** (después de los TP6 y TP7).
+> **Nota del autor:** CALIBRE fue desarrollada como una iniciativa propia de Hugo Ariel Martinez, estudiante de la Tecnicatura Universitaria en Mecatrónica (TUM), con la sola voluntad de aportar algo más al estudio, facilitar la comprensión y sumar una herramienta práctica al cursado de la materia **Mecánica II** (surgida tras la realización de los TP6 y TP7).
 > 
 > El autor **no se responsabiliza** por los resultados, cálculos, interpretaciones o decisiones de diseño industrial que se tomen a partir de esta herramienta. Esta aplicación es una ayuda de cálculo pedagógica y no reemplaza el criterio formal de la cátedra, la intervención de un profesional habilitado ni las especificaciones oficiales de los catálogos vigentes de los fabricantes de rodamientos. La vida nominal calculada es una estimación estadística teórica (ISO 281 / ISO 76).
 
